@@ -7,8 +7,8 @@ ENV HAPROXY_MD5 ac838b03b9d6ed40b19d7b0db3472022
 ENV LUA_VERSION=5.3.4 \
     LUA_SHA1=79790cfd40e09ba796b01a571d4d63b52b1cd950
 
-# chromium-61.0.3163.83
-ENV BORINGSSL_COMMIT 14308731e5446a73ac2258688a9688b524483cb6
+# chromium-62.0.3202.66
+ENV BORINGSSL_COMMIT ae9f0616c58bddcbe7a6d80d29d796bee9aaff2e
 
 RUN set -ex; \
     apk add --no-cache --virtual .build-deps \
