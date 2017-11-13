@@ -6,8 +6,8 @@ RUN apt-get update \
         libpcre2-posix0 \
     && rm -rf /var/lib/apt/lists/*
 
-# chromium-62.0.3202.66
-ENV BORINGSSL_COMMIT ae9f0616c58bddcbe7a6d80d29d796bee9aaff2e
+# chromium-63.0.3239.40 (Google Chrome Beta 2017-11-13)
+ENV BORINGSSL_COMMIT 664e99a6486c293728097c661332f92bf2d847c6
 
 ENV HAPROXY_MAJOR 1.8
 ENV HAPROXY_VERSION 1.8-rc3
