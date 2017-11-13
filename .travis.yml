@@ -19,7 +19,7 @@ install:
 
 before_script:
   - cd "$VERSION"
-  - image="$REGISTRY_USER/haproxy-boringssl:${VERSION}${VARIANT+-$VARIANT}"
+  - image="$REGISTRY_USER/haproxy-boringssl:${VERSION}${VARIANT:+-$VARIANT}"
   - version="$(awk '$2 == "HAPROXY_VERSION" { print $3; exit }' Dockerfile)"
   - echo "Building image '$image' for HAProxy version '$version'..."
   - docker pull "$image" || true
