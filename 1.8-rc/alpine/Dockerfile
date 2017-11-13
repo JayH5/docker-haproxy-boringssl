@@ -1,14 +1,14 @@
 FROM alpine:3.6
 
-ENV HAPROXY_MAJOR 1.8
-ENV HAPROXY_VERSION 1.8-dev3
-ENV HAPROXY_MD5 ea800f08a611b6ac6fffe5595f1a8366
-
 ENV LUA_VERSION=5.3.4 \
     LUA_SHA1=79790cfd40e09ba796b01a571d4d63b52b1cd950
 
-# chromium-62.0.3202.66
-ENV BORINGSSL_COMMIT ae9f0616c58bddcbe7a6d80d29d796bee9aaff2e
+# chromium-63.0.3239.40 (Google Chrome Beta 2017-11-13)
+ENV BORINGSSL_COMMIT 664e99a6486c293728097c661332f92bf2d847c6
+
+ENV HAPROXY_MAJOR 1.8
+ENV HAPROXY_VERSION 1.8-rc3
+ENV HAPROXY_MD5 aa9f67bf6f700d6688d7c861c6319735
 
 RUN set -ex; \
     apk add --no-cache --virtual .build-deps \
@@ -56,7 +56,7 @@ RUN set -ex; \
     rm -rf /usr/src/boringssl; \
     \
 # install HAProxy
-    wget -O haproxy.tar.gz "http://www.haproxy.org/download/${HAPROXY_MAJOR}/src/devel/haproxy-${HAPROXY_VERSION}.tar.gz"; \
+    wget -O haproxy.tar.gz "http://www.haproxy.org/download/${HAPROXY_MAJOR}/src/haproxy-${HAPROXY_VERSION}.tar.gz"; \
     echo "$HAPROXY_MD5 *haproxy.tar.gz" | md5sum -c; \
     mkdir -p /usr/src/haproxy; \
     tar -xzf haproxy.tar.gz -C /usr/src/haproxy --strip-components=1; \
@@ -84,11 +84,10 @@ RUN set -ex; \
     rm -rf /usr/src/haproxy; \
     \
     runDeps="$( \
-        scanelf --needed --nobanner --recursive /usr/local \
-            | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
+        scanelf --needed --nobanner --format '%n#p' --recursive /usr/local \
+            | tr ',' '\n' \
             | sort -u \
-            | xargs -r apk info --installed \
-            | sort -u \
+            | awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }' \
     )"; \
     apk add --virtual .haproxy-rundeps $runDeps; \
     apk del .build-deps
