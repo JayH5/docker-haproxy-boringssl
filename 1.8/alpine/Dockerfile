@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM alpine:3.7
 
 ENV LUA_VERSION=5.3.4 \
     LUA_SHA1=79790cfd40e09ba796b01a571d4d63b52b1cd950

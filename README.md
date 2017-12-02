@@ -16,6 +16,6 @@ Compared to the [official HAProxy image](https://hub.docker.com/_/haproxy/), thi
 * Builds and statically links BoringSSL, tracking* the BoringSSL version used in Chromium beta (as opposed to using the operating system's OpenSSL).
 * Builds against PCRE2 instead of the older "PCRE 3".
 * Enables use of the PCRE2 JIT engine.
-* Is based on newer base images: Debian Stretch/Alpine 3.6 vs. (currently) Debian Jessie/Alpine 3.5 in the official images.
+* The Alpine Linux image is based on Alpine 3.7 vs. (currently) Alpine 3.6 in the official image.
 
 \* _No promises about speedy updates to HAProxy or BoringSSL. I'm just one person._
