@@ -3,12 +3,12 @@ FROM alpine:3.7
 ENV LUA_VERSION=5.3.4 \
     LUA_SHA1=79790cfd40e09ba796b01a571d4d63b52b1cd950
 
-# chromium-63.0.3239.70 (Google Chrome Beta 2017-11-29)
+# chromium-63.0.3239.84 (Google Chrome stable 63)
 ENV BORINGSSL_COMMIT 664e99a6486c293728097c661332f92bf2d847c6
 
 ENV HAPROXY_MAJOR 1.8
-ENV HAPROXY_VERSION 1.8.0
-ENV HAPROXY_MD5 6ccea4619b7183fbcc8c98bae1f9823d
+ENV HAPROXY_VERSION 1.8.1
+ENV HAPROXY_MD5 e42892d4b6ee33200fccaa1d81837e49
 
 RUN set -ex; \
     apk add --no-cache --virtual .build-deps \
