@@ -13,7 +13,7 @@ Why might you want to use BoringSSL instead of OpenSSL?
 This image is _somewhat_ inspired by ["nginx-boringssl"](https://github.com/nginx-modules/docker-nginx-boringssl), but of course uses HAProxy instead of Nginx. Also, while nginx-boringssl enables many extra features and optimisations, this image does fewer fancy things.
 
 Compared to the [official HAProxy image](https://hub.docker.com/_/haproxy/), this image:
-* Builds and statically links BoringSSL, tracking* the BoringSSL version used in Chromium beta (as opposed to using the operating system's OpenSSL).
+* Builds and statically links BoringSSL, tracking* the BoringSSL version used in Chromium stable (as opposed to using the operating system's OpenSSL).
 * Builds against PCRE2 instead of the older "PCRE 3".
 * Enables use of the PCRE2 JIT engine.
 * The Alpine Linux image is based on Alpine 3.7 vs. (currently) Alpine 3.6 in the official image.
